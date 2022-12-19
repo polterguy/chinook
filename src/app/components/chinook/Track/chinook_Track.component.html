@@ -1,0 +1,372 @@
+
+<div class="component-wrapper">
+
+  <div class="mat-elevation-z4 relativized grid-wrapper">
+
+    <button
+      mat-raised-button
+      *ngIf="authService.me.canInvoke(entityBaseUrl(), 'post') && httpService['chinook_Track']['create']"
+      class="create-button"
+      [matTooltip]="('Create' | translate) + (' Track' | translate)"
+      (click)="createEntity()">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+
+    <table
+      mat-table
+      multiTemplateDataRows
+      [dataSource]="data">
+
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'Name' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="Name">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Track.Name')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Track.Name')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['Name']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="AlbumId.Title">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'AlbumId.Title' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="AlbumId_Title">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('AlbumId.Title')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('AlbumId.Title')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['AlbumId.Title']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="MediaTypeId.Name">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'MediaTypeId.Name' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="MediaTypeId_Name">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('MediaTypeId.Name')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('MediaTypeId.Name')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['MediaTypeId.Name']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="GenreId.Name">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'GenreId.Name' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="GenreId_Name">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('GenreId.Name')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('GenreId.Name')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['GenreId.Name']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Composer">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'Composer' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="Composer">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Track.Composer')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Track.Composer')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['Composer']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="TrackId">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'TrackId' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="TrackId">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Track.TrackId')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Track.TrackId')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['TrackId']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="AlbumId">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'AlbumId' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="AlbumId">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Track.AlbumId')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Track.AlbumId')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['AlbumId']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="MediaTypeId">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'MediaTypeId' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="MediaTypeId">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Track.MediaTypeId')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Track.MediaTypeId')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['MediaTypeId']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="GenreId">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'GenreId' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="GenreId">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Track.GenreId')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Track.GenreId')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['GenreId']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Milliseconds">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'Milliseconds' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="Milliseconds">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Track.Milliseconds')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Track.Milliseconds')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['Milliseconds']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Bytes">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'Bytes' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="Bytes">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Track.Bytes')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Track.Bytes')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['Bytes']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="UnitPrice">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'UnitPrice' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="UnitPrice">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Track.UnitPrice')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Track.UnitPrice')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['UnitPrice']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete-instance">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="authService.me.canInvoke(entityBaseUrl(), 'delete') && httpService['chinook_Track']['delete'] ? 'delete-column' : 'hidden'"></th>
+
+        <td
+          mat-cell
+          *matCellDef="let el"
+          [ngClass]="authService.me.canInvoke(entityBaseUrl(), 'delete') && httpService['chinook_Track']['delete'] ? 'delete-column' : 'hidden'">
+          <button
+            mat-button
+            (click)="deleteEntity($event, el, {TrackId: el.TrackId})"
+            [matTooltip]="'Delete this record' | translate">
+            <mat-icon matSuffix>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <td
+          mat-cell
+          *matCellDef="let el"
+          colspan="9">
+          <div
+            class="details-sheet"
+            [@detailExpand]="el == expandedElement ? 'expanded' : 'collapsed'">
+            <button
+              *ngIf="authService.me.canInvoke(entityBaseUrl(), 'put') && httpService['chinook_Track']['update']"
+              mat-button
+              color="primary"
+              class="edit-button"
+              [matTooltip]="'Edit' | translate"
+              (click)="editEntity(el)">
+              <mat-icon matSuffix>edit</mat-icon>
+            </button>
+            <p class="details">
+              <label>{{'Name' | translate}}</label>
+              <span>{{el['Name']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'AlbumId.Title' | translate}}</label>
+              <span>{{el['AlbumId.Title']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'MediaTypeId.Name' | translate}}</label>
+              <span>{{el['MediaTypeId.Name']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'GenreId.Name' | translate}}</label>
+              <span>{{el['GenreId.Name']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'Composer' | translate}}</label>
+              <span>{{el['Composer']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'Milliseconds' | translate}}</label>
+              <span>{{el['Milliseconds']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'Bytes' | translate}}</label>
+              <span>{{el['Bytes']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'UnitPrice' | translate}}</label>
+              <span>{{el['UnitPrice']}}</span>
+            </p>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"></tr>
+
+      <tr
+        mat-row
+        [ngClass]="expandedElement === row ? 'selected' : 'row'"
+        class="expandable-row"
+        (click)="expandedElement = expandedElement === row ? null : row"
+        *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr
+        mat-row
+        class="expanded-row"
+        *matRowDef="let row; columns: ['details']; "></tr>
+
+    </table>
+
+    <mat-paginator
+      #paginator
+      [(length)]="itemsCount"
+      [(pageSize)]="filter.limit"
+      (page)="paged($event)"
+      [pageSizeOptions]="[5,10,25,50]">
+    </mat-paginator>
+
+  </div>
+
+</div>

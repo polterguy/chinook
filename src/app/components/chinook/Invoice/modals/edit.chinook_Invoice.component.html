@@ -1,0 +1,160 @@
+<form>
+  <h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'Invoice' | translate}}</h1>
+  <div mat-dialog-content>
+
+      <app-magic-autocomplete
+      *ngIf="canEditColumn('CustomerId')"
+      [model]="data.entity"
+      field="CustomerId"
+      key="CustomerId"
+      table="Customer"
+      value="FirstName"
+      [placeholder]="('Choose a ' | translate) + ('CustomerId' | translate)"
+      class="entity-edit-field"
+      (change)="changed('CustomerId')"
+      [getItems]="service.chinook_Customer">
+    </app-magic-autocomplete>
+
+    <mat-form-field
+      *ngIf="canEditColumn('BillingAddress')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'BillingAddress' | translate}}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="BillingAddress"
+        (change)="changed('BillingAddress')"
+        [(ngModel)]="data.entity.BillingAddress"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('BillingCity')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'BillingCity' | translate}}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="BillingCity"
+        (change)="changed('BillingCity')"
+        [(ngModel)]="data.entity.BillingCity"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('BillingState')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'BillingState' | translate}}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="BillingState"
+        (change)="changed('BillingState')"
+        [(ngModel)]="data.entity.BillingState"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('BillingCountry')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'BillingCountry' | translate}}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="BillingCountry"
+        (change)="changed('BillingCountry')"
+        [(ngModel)]="data.entity.BillingCountry"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('BillingPostalCode')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'BillingPostalCode' | translate}}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="BillingPostalCode"
+        (change)="changed('BillingPostalCode')"
+        [(ngModel)]="data.entity.BillingPostalCode"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('InvoiceDate')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'InvoiceDate' | translate}}</mat-label>
+      <input
+        matInput
+        name="InvoiceDate"
+        (change)="changed('InvoiceDate')"
+        [owlDateTime]="pickerInvoiceDate"
+        [(ngModel)]="data.entity.InvoiceDate"
+        autocomplete="off">
+      <owl-date-time
+        #pickerInvoiceDate
+        (afterPickerClosed)="changed('InvoiceDate')"></owl-date-time>
+      <mat-icon
+        [owlDateTimeTrigger]="pickerInvoiceDate"
+        matSuffix
+        role="button"
+        class="button-icon"
+        matDatepickerToggleIcon>calendar_today</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('InvoiceId')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'InvoiceId' | translate}}</mat-label>
+      <input
+        matInput
+        type="number"
+        step="1"
+        name="InvoiceId"
+        (change)="changed('InvoiceId')"
+        [(ngModel)]="data.entity.InvoiceId"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('Total')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'Total' | translate}}</mat-label>
+      <input
+        matInput
+        type="number"
+        name="Total"
+        step="any"
+        (change)="changed('Total')"
+        [(ngModel)]="data.entity.Total"
+        autocomplete="off">
+    </mat-form-field>
+
+</div>
+
+  <div mat-dialog-actions>
+
+    <div class="right-aligned">
+
+      <button 
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="upsert()">{{'Save' | translate}}</button>
+
+      <button
+        mat-button
+        (click)="close(null)">{{'Cancel' | translate}}</button>
+
+    </div>
+
+  </div>
+</form>

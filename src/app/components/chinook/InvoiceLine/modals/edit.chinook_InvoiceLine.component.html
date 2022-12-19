@@ -1,0 +1,95 @@
+<form>
+  <h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'InvoiceLine' | translate}}</h1>
+  <div mat-dialog-content>
+
+      <app-magic-autocomplete
+      *ngIf="canEditColumn('InvoiceId')"
+      [model]="data.entity"
+      field="InvoiceId"
+      key="InvoiceId"
+      table="Invoice"
+      value="BillingAddress"
+      [placeholder]="('Choose a ' | translate) + ('InvoiceId' | translate)"
+      class="entity-edit-field"
+      (change)="changed('InvoiceId')"
+      [getItems]="service.chinook_Invoice">
+    </app-magic-autocomplete>
+
+    <app-magic-autocomplete
+      *ngIf="canEditColumn('TrackId')"
+      [model]="data.entity"
+      field="TrackId"
+      key="TrackId"
+      table="Track"
+      value="Name"
+      [placeholder]="('Choose a ' | translate) + ('TrackId' | translate)"
+      class="entity-edit-field"
+      (change)="changed('TrackId')"
+      [getItems]="service.chinook_Track">
+    </app-magic-autocomplete>
+
+    <mat-form-field
+      *ngIf="canEditColumn('InvoiceLineId')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'InvoiceLineId' | translate}}</mat-label>
+      <input
+        matInput
+        type="number"
+        step="1"
+        name="InvoiceLineId"
+        (change)="changed('InvoiceLineId')"
+        [(ngModel)]="data.entity.InvoiceLineId"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('UnitPrice')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'UnitPrice' | translate}}</mat-label>
+      <input
+        matInput
+        type="number"
+        name="UnitPrice"
+        step="any"
+        (change)="changed('UnitPrice')"
+        [(ngModel)]="data.entity.UnitPrice"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('Quantity')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'Quantity' | translate}}</mat-label>
+      <input
+        matInput
+        type="number"
+        step="1"
+        name="Quantity"
+        (change)="changed('Quantity')"
+        [(ngModel)]="data.entity.Quantity"
+        autocomplete="off">
+    </mat-form-field>
+
+</div>
+
+  <div mat-dialog-actions>
+
+    <div class="right-aligned">
+
+      <button 
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="upsert()">{{'Save' | translate}}</button>
+
+      <button
+        mat-button
+        (click)="close(null)">{{'Cancel' | translate}}</button>
+
+    </div>
+
+  </div>
+</form>

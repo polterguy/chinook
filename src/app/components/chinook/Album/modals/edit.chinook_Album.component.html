@@ -1,0 +1,66 @@
+<form>
+  <h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'Album' | translate}}</h1>
+  <div mat-dialog-content>
+
+      <app-magic-autocomplete
+      *ngIf="canEditColumn('ArtistId')"
+      [model]="data.entity"
+      field="ArtistId"
+      key="ArtistId"
+      table="Artist"
+      value="Name"
+      [placeholder]="('Choose a ' | translate) + ('ArtistId' | translate)"
+      class="entity-edit-field"
+      (change)="changed('ArtistId')"
+      [getItems]="service.chinook_Artist">
+    </app-magic-autocomplete>
+
+    <mat-form-field
+      *ngIf="canEditColumn('Title')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'Title' | translate}}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="Title"
+        (change)="changed('Title')"
+        [(ngModel)]="data.entity.Title"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('AlbumId')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'AlbumId' | translate}}</mat-label>
+      <input
+        matInput
+        type="number"
+        step="1"
+        name="AlbumId"
+        (change)="changed('AlbumId')"
+        [(ngModel)]="data.entity.AlbumId"
+        autocomplete="off">
+    </mat-form-field>
+
+</div>
+
+  <div mat-dialog-actions>
+
+    <div class="right-aligned">
+
+      <button 
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="upsert()">{{'Save' | translate}}</button>
+
+      <button
+        mat-button
+        (click)="close(null)">{{'Cancel' | translate}}</button>
+
+    </div>
+
+  </div>
+</form>

@@ -1,0 +1,151 @@
+<form>
+  <h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'Track' | translate}}</h1>
+  <div mat-dialog-content>
+
+      <mat-form-field
+      *ngIf="canEditColumn('Name')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'Name' | translate}}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="Name"
+        (change)="changed('Name')"
+        [(ngModel)]="data.entity.Name"
+        autocomplete="off">
+    </mat-form-field>
+
+    <app-magic-autocomplete
+      *ngIf="canEditColumn('AlbumId')"
+      [model]="data.entity"
+      field="AlbumId"
+      key="AlbumId"
+      table="Album"
+      value="Title"
+      [placeholder]="('Choose a ' | translate) + ('AlbumId' | translate)"
+      class="entity-edit-field"
+      (change)="changed('AlbumId')"
+      [getItems]="service.chinook_Album">
+    </app-magic-autocomplete>
+
+    <app-magic-autocomplete
+      *ngIf="canEditColumn('MediaTypeId')"
+      [model]="data.entity"
+      field="MediaTypeId"
+      key="MediaTypeId"
+      table="MediaType"
+      value="Name"
+      [placeholder]="('Choose a ' | translate) + ('MediaTypeId' | translate)"
+      class="entity-edit-field"
+      (change)="changed('MediaTypeId')"
+      [getItems]="service.chinook_MediaType">
+    </app-magic-autocomplete>
+
+    <app-magic-autocomplete
+      *ngIf="canEditColumn('GenreId')"
+      [model]="data.entity"
+      field="GenreId"
+      key="GenreId"
+      table="Genre"
+      value="Name"
+      [placeholder]="('Choose a ' | translate) + ('GenreId' | translate)"
+      class="entity-edit-field"
+      (change)="changed('GenreId')"
+      [getItems]="service.chinook_Genre">
+    </app-magic-autocomplete>
+
+    <mat-form-field
+      *ngIf="canEditColumn('Composer')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'Composer' | translate}}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="Composer"
+        (change)="changed('Composer')"
+        [(ngModel)]="data.entity.Composer"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('TrackId')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'TrackId' | translate}}</mat-label>
+      <input
+        matInput
+        type="number"
+        step="1"
+        name="TrackId"
+        (change)="changed('TrackId')"
+        [(ngModel)]="data.entity.TrackId"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('Milliseconds')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'Milliseconds' | translate}}</mat-label>
+      <input
+        matInput
+        type="number"
+        step="1"
+        name="Milliseconds"
+        (change)="changed('Milliseconds')"
+        [(ngModel)]="data.entity.Milliseconds"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('Bytes')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'Bytes' | translate}}</mat-label>
+      <input
+        matInput
+        type="number"
+        step="1"
+        name="Bytes"
+        (change)="changed('Bytes')"
+        [(ngModel)]="data.entity.Bytes"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('UnitPrice')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'UnitPrice' | translate}}</mat-label>
+      <input
+        matInput
+        type="number"
+        name="UnitPrice"
+        step="any"
+        (change)="changed('UnitPrice')"
+        [(ngModel)]="data.entity.UnitPrice"
+        autocomplete="off">
+    </mat-form-field>
+
+</div>
+
+  <div mat-dialog-actions>
+
+    <div class="right-aligned">
+
+      <button 
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="upsert()">{{'Save' | translate}}</button>
+
+      <button
+        mat-button
+        (click)="close(null)">{{'Cancel' | translate}}</button>
+
+    </div>
+
+  </div>
+</form>

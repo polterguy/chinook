@@ -1,0 +1,251 @@
+
+<div class="component-wrapper">
+
+  <div class="mat-elevation-z4 relativized grid-wrapper">
+
+    <button
+      mat-raised-button
+      *ngIf="authService.me.canInvoke(entityBaseUrl(), 'post') && httpService['chinook_InvoiceLine']['create']"
+      class="create-button"
+      [matTooltip]="('Create' | translate) + (' InvoiceLine' | translate)"
+      (click)="createEntity()">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+
+    <table
+      mat-table
+      multiTemplateDataRows
+      [dataSource]="data">
+
+      <ng-container matColumnDef="InvoiceId.BillingAddress">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'InvoiceId.BillingAddress' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="InvoiceId_BillingAddress">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('InvoiceId.BillingAddress')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('InvoiceId.BillingAddress')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['InvoiceId.BillingAddress']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="TrackId.Name">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'TrackId.Name' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="TrackId_Name">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('TrackId.Name')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('TrackId.Name')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['TrackId.Name']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="InvoiceLineId">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'InvoiceLineId' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="InvoiceLineId">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('InvoiceLine.InvoiceLineId')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('InvoiceLine.InvoiceLineId')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['InvoiceLineId']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="InvoiceId">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'InvoiceId' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="InvoiceId">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('InvoiceLine.InvoiceId')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('InvoiceLine.InvoiceId')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['InvoiceId']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="TrackId">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'TrackId' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="TrackId">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('InvoiceLine.TrackId')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('InvoiceLine.TrackId')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['TrackId']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="UnitPrice">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'UnitPrice' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="UnitPrice">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('InvoiceLine.UnitPrice')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('InvoiceLine.UnitPrice')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['UnitPrice']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'Quantity' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="Quantity">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('InvoiceLine.Quantity')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('InvoiceLine.Quantity')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['Quantity']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete-instance">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="authService.me.canInvoke(entityBaseUrl(), 'delete') && httpService['chinook_InvoiceLine']['delete'] ? 'delete-column' : 'hidden'"></th>
+
+        <td
+          mat-cell
+          *matCellDef="let el"
+          [ngClass]="authService.me.canInvoke(entityBaseUrl(), 'delete') && httpService['chinook_InvoiceLine']['delete'] ? 'delete-column' : 'hidden'">
+          <button
+            mat-button
+            (click)="deleteEntity($event, el, {InvoiceLineId: el.InvoiceLineId})"
+            [matTooltip]="'Delete this record' | translate">
+            <mat-icon matSuffix>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <td
+          mat-cell
+          *matCellDef="let el"
+          colspan="5">
+          <div
+            class="details-sheet"
+            [@detailExpand]="el == expandedElement ? 'expanded' : 'collapsed'">
+            <button
+              *ngIf="authService.me.canInvoke(entityBaseUrl(), 'put') && httpService['chinook_InvoiceLine']['update']"
+              mat-button
+              color="primary"
+              class="edit-button"
+              [matTooltip]="'Edit' | translate"
+              (click)="editEntity(el)">
+              <mat-icon matSuffix>edit</mat-icon>
+            </button>
+            <p class="details">
+              <label>{{'InvoiceId.BillingAddress' | translate}}</label>
+              <span>{{el['InvoiceId.BillingAddress']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'TrackId.Name' | translate}}</label>
+              <span>{{el['TrackId.Name']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'UnitPrice' | translate}}</label>
+              <span>{{el['UnitPrice']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'Quantity' | translate}}</label>
+              <span>{{el['Quantity']}}</span>
+            </p>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"></tr>
+
+      <tr
+        mat-row
+        [ngClass]="expandedElement === row ? 'selected' : 'row'"
+        class="expandable-row"
+        (click)="expandedElement = expandedElement === row ? null : row"
+        *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr
+        mat-row
+        class="expanded-row"
+        *matRowDef="let row; columns: ['details']; "></tr>
+
+    </table>
+
+    <mat-paginator
+      #paginator
+      [(length)]="itemsCount"
+      [(pageSize)]="filter.limit"
+      (page)="paged($event)"
+      [pageSizeOptions]="[5,10,25,50]">
+    </mat-paginator>
+
+  </div>
+
+</div>

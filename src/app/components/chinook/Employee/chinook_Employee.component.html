@@ -1,0 +1,480 @@
+
+<div class="component-wrapper">
+
+  <div class="mat-elevation-z4 relativized grid-wrapper">
+
+    <button
+      mat-raised-button
+      *ngIf="authService.me.canInvoke(entityBaseUrl(), 'post') && httpService['chinook_Employee']['create']"
+      class="create-button"
+      [matTooltip]="('Create' | translate) + (' Employee' | translate)"
+      (click)="createEntity()">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+
+    <table
+      mat-table
+      multiTemplateDataRows
+      [dataSource]="data">
+
+      <ng-container matColumnDef="LastName">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'LastName' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="LastName">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.LastName')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.LastName')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['LastName']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="FirstName">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'FirstName' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="FirstName">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.FirstName')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.FirstName')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['FirstName']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ReportsTo.LastName">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'ReportsTo.LastName' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="ReportsTo_LastName">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('ReportsTo.LastName')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('ReportsTo.LastName')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['ReportsTo.LastName']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Title">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'Title' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="Title">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.Title')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.Title')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['Title']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'Address' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="Address">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.Address')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.Address')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['Address']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="City">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'City' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="City">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.City')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.City')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['City']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="State">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'State' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="State">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.State')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.State')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['State']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Country">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'Country' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="Country">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.Country')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.Country')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['Country']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="PostalCode">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'PostalCode' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="PostalCode">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.PostalCode')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.PostalCode')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['PostalCode']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Phone">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'Phone' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="Phone">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.Phone')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.Phone')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['Phone']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Fax">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'Fax' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="Fax">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.Fax')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.Fax')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['Fax']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'Email' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="Email">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.Email')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.Email')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['Email']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="BirthDate">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'BirthDate' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="BirthDate">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.BirthDate')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.BirthDate')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['BirthDate'] | formatDate}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="HireDate">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'HireDate' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="HireDate">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.HireDate')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.HireDate')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['HireDate'] | formatDate}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="EmployeeId">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'EmployeeId' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="EmployeeId">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.EmployeeId')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.EmployeeId')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['EmployeeId']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ReportsTo">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'ReportsTo' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="ReportsTo">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('Employee.ReportsTo')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('Employee.ReportsTo')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let el">{{el['ReportsTo']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete-instance">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="authService.me.canInvoke(entityBaseUrl(), 'delete') && httpService['chinook_Employee']['delete'] ? 'delete-column' : 'hidden'"></th>
+
+        <td
+          mat-cell
+          *matCellDef="let el"
+          [ngClass]="authService.me.canInvoke(entityBaseUrl(), 'delete') && httpService['chinook_Employee']['delete'] ? 'delete-column' : 'hidden'">
+          <button
+            mat-button
+            (click)="deleteEntity($event, el, {EmployeeId: el.EmployeeId})"
+            [matTooltip]="'Delete this record' | translate">
+            <mat-icon matSuffix>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <td
+          mat-cell
+          *matCellDef="let el"
+          colspan="15">
+          <div
+            class="details-sheet"
+            [@detailExpand]="el == expandedElement ? 'expanded' : 'collapsed'">
+            <button
+              *ngIf="authService.me.canInvoke(entityBaseUrl(), 'put') && httpService['chinook_Employee']['update']"
+              mat-button
+              color="primary"
+              class="edit-button"
+              [matTooltip]="'Edit' | translate"
+              (click)="editEntity(el)">
+              <mat-icon matSuffix>edit</mat-icon>
+            </button>
+            <p class="details">
+              <label>{{'LastName' | translate}}</label>
+              <span>{{el['LastName']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'FirstName' | translate}}</label>
+              <span>{{el['FirstName']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'ReportsTo.LastName' | translate}}</label>
+              <span>{{el['ReportsTo.LastName']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'Title' | translate}}</label>
+              <span>{{el['Title']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'Address' | translate}}</label>
+              <span>{{el['Address']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'City' | translate}}</label>
+              <span>{{el['City']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'State' | translate}}</label>
+              <span>{{el['State']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'Country' | translate}}</label>
+              <span>{{el['Country']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'PostalCode' | translate}}</label>
+              <span>{{el['PostalCode']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'Phone' | translate}}</label>
+              <a [href]="'tel:' + el['Phone']">{{el['Phone']}}</a>
+            </p>
+            <p class="details">
+              <label>{{'Fax' | translate}}</label>
+              <span>{{el['Fax']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'Email' | translate}}</label>
+              <a [href]="'mailto:' + el['Email']">{{el['Email']}}</a>
+            </p>
+            <p class="details">
+              <label>{{'BirthDate' | translate}}</label>
+              <span>{{el['BirthDate'] | formatDate}}</span>
+            </p>
+            <p class="details">
+              <label>{{'HireDate' | translate}}</label>
+              <span>{{el['HireDate'] | formatDate}}</span>
+            </p>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"></tr>
+
+      <tr
+        mat-row
+        [ngClass]="expandedElement === row ? 'selected' : 'row'"
+        class="expandable-row"
+        (click)="expandedElement = expandedElement === row ? null : row"
+        *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr
+        mat-row
+        class="expanded-row"
+        *matRowDef="let row; columns: ['details']; "></tr>
+
+    </table>
+
+    <mat-paginator
+      #paginator
+      [(length)]="itemsCount"
+      [(pageSize)]="filter.limit"
+      (page)="paged($event)"
+      [pageSizeOptions]="[5,10,25,50]">
+    </mat-paginator>
+
+  </div>
+
+</div>

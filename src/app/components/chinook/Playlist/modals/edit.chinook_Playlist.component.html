@@ -1,0 +1,53 @@
+<form>
+  <h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'Playlist' | translate}}</h1>
+  <div mat-dialog-content>
+
+      <mat-form-field
+      *ngIf="canEditColumn('Name')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'Name' | translate}}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="Name"
+        (change)="changed('Name')"
+        [(ngModel)]="data.entity.Name"
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="canEditColumn('PlaylistId')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'PlaylistId' | translate}}</mat-label>
+      <input
+        matInput
+        type="number"
+        step="1"
+        name="PlaylistId"
+        (change)="changed('PlaylistId')"
+        [(ngModel)]="data.entity.PlaylistId"
+        autocomplete="off">
+    </mat-form-field>
+
+</div>
+
+  <div mat-dialog-actions>
+
+    <div class="right-aligned">
+
+      <button 
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="upsert()">{{'Save' | translate}}</button>
+
+      <button
+        mat-button
+        (click)="close(null)">{{'Cancel' | translate}}</button>
+
+    </div>
+
+  </div>
+</form>
